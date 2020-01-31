@@ -10,9 +10,10 @@ public class WarTester {
 		war.shuffle();
 		//System.out.println(war.deck);
 		war.deal();
-		System.out.println(war.players.get(0).hand);
-		System.out.println(war.players.get(1).hand);
+
+		war.playAllWar();
 		
+		System.out.println(war.diPile);
 		
 		
 	}
