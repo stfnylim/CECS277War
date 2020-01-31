@@ -15,6 +15,10 @@ public class War {
 	public int numPlayers;
 	public Deck diPile;
 	
+	/**
+	 * 
+	 * @param numPlayers - number of players participating
+	 */
 	public War(int numPlayers) {
 		diPile = new Deck();
 		String[] suits = {"Hearts","Spades","Clubs","Diamonds"};
@@ -51,7 +55,6 @@ public class War {
 	 * @return boolean - whether player has no more cards or not
 	 */
 	public boolean isEmpty(Player player) {
-		
 		if (player.hand.size()==0) {
 			return true;}
 		else {return false;}
@@ -75,6 +78,7 @@ public class War {
 		}
 		for (int i = 0; i<numPlayers; i++) {
 			if(this.isEmpty(players.get(i))) {
+				players.remove(i);
 				numPlayers--;
 			}
 		}
@@ -87,7 +91,6 @@ public class War {
 	public void playWar() {
 		for (int i = 0; i<numPlayers; i++) {
 			if(this.isEmpty(players.get(i))) {
-				
 				return;
 			}
 			for (int j = 0; j <3; j++) {
@@ -109,11 +112,11 @@ public class War {
 		this.playCard();
 		//initialize the while loop until the number of players is just 1.
 		while (true) {
-			System.out.println(diPile);
 			int dPileSize = diPile.size();
-			System.out.println(dPileSize);
+			int compare = diPile.get(dPileSize-2).compareTo(diPile.get(dPileSize-1));
 			// to compare the cards in the discard pile.
-			if (diPile.get(dPileSize-2).compareTo(diPile.get(dPileSize-1))<0) {
+			
+			if (compare<0) {
 				int dsize = diPile.size();
 				for (int i =0; i <dsize;i++) {
 					players.get(1).hand.add(diPile.get(0));
@@ -126,7 +129,7 @@ public class War {
 					break;
 				}
 			}
-			else if(diPile.get(dPileSize-1).compareTo(diPile.get(dPileSize-2))>0) {
+			else if(compare>0) {
 				int dsize = diPile.size();
 				for (int i =0; i <dsize;i++) {
 					players.get(0).hand.add(diPile.get(0));
