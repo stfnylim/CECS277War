@@ -113,15 +113,16 @@ public class War {
 			if (diPile.get(0).compareTo(diPile.get(1))<0) {
 				for (int i =0; i <diPile.size();i++) {
 					players.get(1).hand.add(diPile.get(i));
-					System.out.println(players.get(1) + " wins the round");
+					diPile.remove(i);
 				}
+				System.out.println(players.get(1) + " wins the round");
 			}
 			else if(diPile.get(0).compareTo(diPile.get(1))>0) {
 				for (int i =0; i <diPile.size();i++) {
 					players.get(0).hand.add(diPile.get(i));
-					System.out.println(players.get(0) + " wins the round");
+					diPile.remove(i);
 				}
-
+				System.out.println(players.get(0) + " wins the round");
 			}
 			
 			else {
