@@ -72,15 +72,15 @@ public class War {
 	 */
 	public void playCard() {	
 		for (int i = 0; i<numPlayers; i++) {
-			System.out.println(players.get(i)+" played a " + players.get(i).hand.get(0));
-			diPile.add(players.get(i).hand.get(0));
-			players.get(i).hand.remove(0);
-		}
-		for (int i = 0; i<numPlayers; i++) {
 			if(this.isEmpty(players.get(i))) {
 				players.remove(i);
 				numPlayers--;
+				return;
 			}
+				
+			System.out.println(players.get(i)+" played a " + players.get(i).hand.get(0));
+			diPile.add(players.get(i).hand.get(0));
+			players.get(i).hand.remove(0);
 		}
 		
 	}
@@ -91,6 +91,8 @@ public class War {
 	public void playWar() {
 		for (int i = 0; i<numPlayers; i++) {
 			if(this.isEmpty(players.get(i))) {
+				players.remove(i);
+				numPlayers--;
 				return;
 			}
 			for (int j = 0; j <3; j++) {
@@ -156,7 +158,6 @@ public class War {
 		}//end while loop because numPlayers = 1
 		
 	}
-	
 	public String toString() {
 		return "There are " + numPlayers + " players playing this game of War.";
 	}
